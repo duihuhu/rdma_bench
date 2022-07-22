@@ -1,3 +1,5 @@
-for i in `seq 0 64`; do		# Lossy index and circular log
-	sudo ipcrm -m $i
+for i in `ipcs -m | tail -n +4 | awk {'print $2'}` # 共享内存
+do
+	ipcrm -m $i;
+	echo 删除shm = $i
 done
